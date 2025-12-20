@@ -179,7 +179,7 @@ This screenshot shows the persistent storage configuration ensuring database dat
 
 ---
 
-## ✅ Deployment Summary
+##  Deployment Summary
 All five verification steps confirm a successful Kubernetes deployment: containers are running, networking is configured, persistent storage is active, and the application is fully accessible.
 
 
