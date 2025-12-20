@@ -1,67 +1,215 @@
-DevOps Project — User API
+# DevOps Project — User API
 
-Ce projet est une application web/API simple, capable d'ajouter des utilsateurs et les stocker dans une base de donnée, leurs emails, et leurs mots de passes. Il y a egalement la possibilté de modifier les données des utlisateurs. Enfin, il est egalement possibe de suprimer les utilsateurs.
-Elle inclut le développement, l'IAC, l'image Docker, l’intégration continue, et l'orchestration des contenrus garce a kubernites.
+## Overview
 
+This project is a simple **RESTful User API** that allows:
+- Adding users
+- Modifying user information
+- Deleting users
 
-1. Travaux Réalisés
+User data (email and password) is stored in a **MariaDB database**.
 
+The project covers the full **DevOps lifecycle**, including:
+- Application development
+- Infrastructure as Code **(IaC)**
+- Docker containerization
+- Continuous Integration **(CI)**
+- Container orchestration using **Kubernetes**
 
-1)  Application
+---
 
-Développement d’une API utilisateur simple(ajouter/supprimer/modifier)
-Creation d'une base de donnée MariaDB
-Tests unitaires et fonctionnels (tester les conditions)
+## 1. Work Performed
 
-2) CI/CD
+### Application :
+- Development of a **User API** (CRUD operations: create, read, update, delete)
+- User data persistence using **MariaDB**
+- **Unit and functional tests** to validate differentes cases
 
-Pipeline GitHub Actions :
+### CI/CD :
+- **GitHub Actions pipeline**
+  - Automated tests to protect the integrity of the `main` branch
+  - Pipeline triggered on push and pull requests
 
-Tests pour proteger l'integrite du code de la branche main 
-
-3) Oj
-
-4) Conteneurisation
-
-Image docker :
-
-- elle pemet que tout le monde puisse lancer l'application sur sa machine 
-
-- ![alt text](image.png)
-- le premier docker est celui utilser pour faire touner l'application localement 
-- le deuxieme conteneur contient le dockerFile (les commentaires sont dedans)
-
-Les commandes utiles pour monter le dockerFile:
-
-
-- docker build -t devopsapp . (construit une image Docker à partir du Dockerfile)
-- docker run --rm --env DEVOPS_DB_HOST=host.docker.internal -p 5000:5000 devopsapp (lance un conteneur basé sur l’image devopsapp, en lui passant une variable d’environnement, en exposant le port 5000, puis supprime automatiquement le conteneur lorsqu’il s’arrête)
-- docker login (se connecter a Docker Hub)
-- docker build -t hmorais1001/devopsapp:latest . (construit une image Docker à partir du dossier courant et la nomme en utilisant le dépôt Docker Hub)
-- docker push hmorais1001/devopsapp:latest ( publie l'image Docker vers le depot)
-![alt text](image-1.png)
-
-5) Rachid
+### IaC :
+- **Oj rajoute ce que tu as fait !!!!!!!!!!!!!!!!!!!!!!!!!!**
 
 
-Points Bonus :
 
-- developpment de l'application en python 
-- Base de donnes utilise : MariaDb
-- Docker Hub
 
-2 Captures d’Écran
+### Containerization
 
-Les captures sont disponibles dans le dossier :
+- Creation of a **Docker image** for the User API using a Dockerfile
+- The image can be used to run the application locally in a consistent environment
+- The image is published to **Docker Hub** for easy distribution
 
-Elles incluent notamment :
+### Kubernetes :
+- **Rachid rajoute ce que tu as fait !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
 
-L’API en fonctionnement
+---
 
-Docker build / run
+## 2. Screenshots
 
-Docker Hub
+Screenshots are available in the `./screenshots` folder.
 
-Kubernetes Dashboard (oj rajoute ca stv )
+They include:
+- API running and responding to requests
+- Docker build and run commands    
+- Docker Hub repository
+- GitHub Actions CI/CD pipeline
+- Kubernetes resources and dashboard *(if applicable)*  RACHID !!!
 
-GitHub Actions (CI/CD pipeline)
+
+## Screenshots
+
+### Flask Application Running Locally
+
+This screenshot shows the Flask application running locally using the development server.
+
+![Flask running locally](./screenshots/flask-running-local.png)
+
+---
+
+### Graphical User Interface – User API
+
+This screenshot shows the main graphical interface used to interact with the User API.
+
+![User API graphical interface](./screenshots/graphical-interface-User-API.png)
+
+---
+
+### Graphical Interface – Create User
+
+This screenshot illustrates the creation of a new user through the graphical interface.
+
+![Create user interface](./screenshots/graphical-interface-User-API-CREATE.png)
+
+---
+
+### Graphical Interface – Update User
+
+This screenshot illustrates the update of an existing user through the graphical interface.
+
+![Update user interface](./screenshots/graphical-interface-User-API-UPDATE.png)
+
+---
+
+### Docker Hub – Published Image
+
+This screenshot shows the Docker image published on Docker Hub.
+
+![Docker Hub image](./screenshots/docker-hub-image.png)
+
+---
+
+### Local MariaDB Container
+
+This screenshot shows a MariaDB container running locally for development and testing purposes.
+
+![Local MariaDB container](./screenshots/screenshots-mariadb-local.png)
+
+
+## Error Handling & Validation
+
+The following screenshots demonstrate how the application and the DevOps workflow handle error scenarios, validation rules, and rejected changes.
+
+### Invalid password during user creation
+![Password validation error](./screenshots/error-pwd-create-user.png)
+
+### Invalid name during user update
+![Name validation error](./screenshots/error-name-update-user.png)
+
+### Invalid email during user update
+![Email validation error](./screenshots/error-email-update-user.png)
+
+### Flask server error logs
+![Flask server logs with error](./screenshots/flask-server-logs-with-error.png)
+
+### GitHub Pull Request – Unmerged Unit Test
+![GitHub Pull Request – Unmerged Unit Test](./screenshots/error-github-pull-request-unmerged-unit-test.png)
+
+### GitHub Actions – Failed Merge / Validation
+![GitHub Actions merge error](./screenshots/actions-error-merge.png)
+
+
+
+## 3. Useful Commands
+
+### Run the application locally (development)
+
+```bash
+python .\devopsproject\app.py
+```
+
+### Build the Docker image
+
+```bash
+docker build -t devopsapp .
+```
+
+---
+
+### Run the application using Docker
+
+```bash
+docker run --rm \
+  -e DEVOPS_DB_HOST=host.docker.internal \
+  -p 5000:5000 \
+  devopsapp
+```
+
+### Authenticate to Docker Hub
+
+```bash
+docker login
+```
+
+---
+
+### Tag the Docker image for Docker Hub
+
+```bash
+docker tag devopsapp hmorais1001/devopsapp:latest
+```
+
+---
+
+### Push the Docker image to Docker Hub
+
+```bash
+docker push hmorais1001/devopsapp:latest
+```
+
+---
+
+### Basic API testing locally
+
+```bash
+curl http://localhost:5000/
+curl http://localhost:5000/users
+```
+
+
+### 4. Links
+
+- GitHub Repository: https://github.com/hugodsti/DevOps-Final-Project-FastAPI
+- Docker Hub Image: https://hub.docker.com/r/hmorais1001/devopsapp
+
+## 5. Authors
+
+- **Hugo Morais**
+- **Rachid Djamal**
+- **Ojong Bessong Nkongho**
+
+---
+
+## 6. 
+
+- AI tools (ChatGPT, Gemini) were used to improve the clarity and structure of documentation and to facilitate certain tasks. No application code or infrastructure configuration was fully generated or directly used.
+
+
+## Bonus 
+
+- The application was developed in Python instead of the NodeJS application provided in the labs.
+- Additional API features, validation logic, and unit/functional tests were implemented compared to the base example.
+
+
