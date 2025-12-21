@@ -30,28 +30,43 @@ The project covers the full **DevOps lifecycle**, including:
   - Automated tests to protect the integrity of the `main` branch
   - Pipeline triggered on push and pull requests
 
-### IaC :
--IaC : Vagrant + Ansible
+### IaC : Vagrant + Ansible
 
-We added an Infrastructure as Code setup to run the FastAPI + MariaDB stack in a virtual machine.
+To make the environment reproducible and easy to set up, we implemented an Infrastructure as Code workflow using Vagrant and Ansible. The idea is to automatically create a virtual machine and configure everything required for our FastAPI + MariaDB application without manual installation.
 
-- `iac/Vagrantfile`
-  - Creates an Ubuntu VM (`ubuntu/jammy64`)
-  - Syncs the repository into `/vagrant` inside the VM
-  - Forwards port `5000` from the VM to the host
-  - Runs the Ansible playbook `iac/provision.yml` to provision everything
+#### Vagrantfile
 
-- `iac/provision.yml`
-  - Installs Python, pip, venv, MariaDB and system dependencies
-  - Creates the MariaDB database and user
-  - Creates a virtualenv in `/opt/devopsapp/venv` and installs `requirements.txt`
-  - Deploys a `devopsapp` systemd service using `devopsproject/app.py`
-  - Waits for the app on port `5000` and performs an HTTP health check (`/`)
+The `iac/Vagrantfile` is responsible for creating and configuring the development virtual machine. It:
 
-- `iac/templates/devopsapp.service.j2`
-  - Systemd unit template for the app
-  - Sets DB environment variables (`DEVOPS_DB_HOST`, `DEVOPS_DB_NAME`, etc.)
-  - Starts the app via uvicorn on port `5000`
+- Creates an Ubuntu 22.04 (ubuntu/jammy64) VM  
+- Syncs the project directory into `/vagrant` inside the VM  
+- Forwards port 5000 from the VM to the host  
+- Automatically runs the Ansible playbook (`iac/provision.yml`) after booting  
+
+This allows the entire environment to be created using a single command.
+
+#### Ansible Provisioning
+
+The `iac/provision.yml` playbook installs and configures everything needed for the application to run:
+
+- Installs Python, pip, virtualenv, and all required system packages  
+- Installs MariaDB, enables the service, and creates the application database and user  
+- Creates a Python virtual environment inside `/opt/devopsapp` and installs the dependencies from `requirements.txt`  
+- Deploys a systemd service (`devopsapp.service`) that starts the FastAPI application automatically  
+- Starts the application and performs a health check using Ansible’s `uri` module to ensure the API responds at:  
+  `http://127.0.0.1:5000/`
+
+By the time provisioning finishes, the application is fully installed, running, and reachable from the host machine.
+
+---
+
+### How to Run the IaC Setup
+
+**Start the VM:**
+```bash
+cd iac
+vagrant up
+
 
 
 
