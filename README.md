@@ -60,11 +60,12 @@ By the time provisioning finishes, the application is fully installed, running, 
 
 ---
 
+```md
 ## How to Run the IaC Setup
 
 **Start the VM:**
 
-```bash
+  bash
 cd iac
 vagrant up
 
