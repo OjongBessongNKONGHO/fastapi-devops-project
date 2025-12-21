@@ -68,6 +68,8 @@ By the time provisioning finishes, the application is fully installed, running, 
 cd iac
 vagrant up
 
+---
+
 ### Containerization
 
 - Creation of a **Docker image** for the User API using a Dockerfile
@@ -95,7 +97,7 @@ They include:
 - Kubernetes Deployment & Management
 
 ### Flask Application Running Locally
-![Flask running locally](./screenshots/flask-running-local.png)
+[Flask running locally](./screenshots/flask-running-local.png)
 
 ---
 
