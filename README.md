@@ -1,5 +1,6 @@
 # DevOps Project — User API
 
+Personal version: I worked on CI/CD, Dockerization and deployment workflow. This repo is maintained as my portfolio showcase.
 ## Overview
 
 This project is a simple **RESTful User API** that allows:
