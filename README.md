@@ -1,3 +1,4 @@
+[![Continuous Integration](https://github.com/OjongBessongNKONGHO/fastapi-devops-project/actions/workflows/ci.yml/badge.svg)](https://github.com/OjongBessongNKONGHO/fastapi-devops-project/actions/workflows/ci.yml)
 # DevOps Project — User API
 
 Personal version: I worked on CI/CD, Dockerization and deployment workflow. This repo is maintained as my portfolio showcase.
