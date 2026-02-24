@@ -17,7 +17,14 @@ The project covers the full **DevOps lifecycle**, including:
 - Continuous Integration **(CI)**
 - Container orchestration using **Kubernetes**
 
----
+## Quickstart (Docker)
+
+1) Build the image
+```bash
+docker build -t fastapi-devops-api .
+docker run --rm -p 5000:5000 fastapi-devops-api
+curl http://localhost:5000/docs
+
 
 ## 1. Work Performed
 
