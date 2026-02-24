@@ -155,6 +155,7 @@ They include:
 ![GitHub Actions merge error](./screenshots/actions-error-merge.png)
 
 ---
+Trigger CI workflow
 
 ##  Kubernetes Deployment Verification
 
